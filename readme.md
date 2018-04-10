@@ -1,6 +1,6 @@
 # WordPress Docker Development Environment
 
-This is a Docker based local development environment for WordPress.
+This is a Docker based local development environment for WordPress. It is tweaked to support importing an existing Wordpress database.
 
 ## What's Inside
 

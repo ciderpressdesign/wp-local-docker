@@ -4,14 +4,15 @@ services:
     image: mysql:latest
     volumes:
       - "./data/db:/var/lib/mysql"
+      - "./import_sql:/docker-entrypoint-initdb.d"
     restart: always
     ports:
       - "3306:3306"
+    env_file:
+      - .env
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: password
   mailcatcher:
      image: schickling/mailcatcher
      restart: always
@@ -46,7 +47,7 @@ services:
       - ~/.ssh:/root/.ssh
     restart: always
     extra_hosts:
-      - "docker-local.localhost:172.18.0.1"
+      - "${NEW_SITE_URL}.localhost:172.18.0.1"
   nginx:
     depends_on:
       - phpfpm
